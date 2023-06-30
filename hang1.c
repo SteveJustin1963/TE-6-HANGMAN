@@ -1,8 +1,3 @@
- 
-
-
-
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -17,8 +12,9 @@ int main()
     scanf("%s", secret_word);
     length = strlen(secret_word);
     
-    char player_guess_word[length];
-    
+    char player_guess_word[length + 1];
+    player_guess_word[length] = '\0';  // Null-terminate the string
+
     chances = length + 2;
     
     for(i=0; i<length; i++)
