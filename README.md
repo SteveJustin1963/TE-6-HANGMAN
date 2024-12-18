@@ -75,5 +75,162 @@ The game ends when either:
   - The hangman drawing is completed
   - Note: Guessing an incorrect complete word counts as one wrong guess
 
-## Implementation Files
+## MINT program
+
+```
+// HANGMAN for MINT
+// Variables used:
+// w - word array
+// g - guessed letters array
+// t - tries left
+// c - current letter
+// i,j - loop counters
+// s - success flag
+// n - letter found flag
+
+// Initialize word array with "MINT" as the word to guess
+:I \[77 73 78 84] w! // "MINT" in ASCII
+   \[0 0 0 0] g!     // Guessed letters array
+   6 t!              // Number of tries
+;
+
+// Draw hangman based on tries left
+:H t 6 = (`   +---+   ` /N
+         `   |   |   ` /N
+         `       |   ` /N
+         `       |   ` /N
+         `       |   ` /N
+         `     =====` /N) /E
+   t 5 = (`   +---+   ` /N
+         `   |   |   ` /N
+         `   O   |   ` /N
+         `       |   ` /N
+         `       |   ` /N
+         `     =====` /N) /E
+   t 4 = (`   +---+   ` /N
+         `   |   |   ` /N
+         `   O   |   ` /N
+         `   |   |   ` /N
+         `       |   ` /N
+         `     =====` /N) /E
+   t 3 = (`   +---+   ` /N
+         `   |   |   ` /N
+         `   O   |   ` /N
+         `  /|   |   ` /N
+         `       |   ` /N
+         `     =====` /N) /E
+   t 2 = (`   +---+   ` /N
+         `   |   |   ` /N
+         `   O   |   ` /N
+         `  /|\  |   ` /N
+         `       |   ` /N
+         `     =====` /N) /E
+   t 1 = (`   +---+   ` /N
+         `   |   |   ` /N
+         `   O   |   ` /N
+         `  /|\  |   ` /N
+         `  /    |   ` /N
+         `     =====` /N) /E
+   t 0 = (`   +---+   ` /N
+         `   |   |   ` /N
+         `   O   |   ` /N
+         `  /|\  |   ` /N
+         `  / \  |   ` /N
+         `     =====` /N)
+;
+
+// Print word with guessed letters
+:W 4( w /i \? c!      // Get current letter
+      g /i \? 0 = (   // If not guessed
+         `_` 
+      ) /E (          // Else
+         c /C         // Print the letter
+      )
+      ` `            // Space between letters
+   )
+   /N
+;
+
+// Check if letter is in word
+:C 0 n!              // Reset found flag
+   4( w /i \? c = (  // If letter matches
+      c g /i \?!     // Store in guessed array
+      1 n!           // Set found flag
+   ))
+;
+
+// Check if word is complete
+:F 1 s!              // Assume success
+   4( g /i \? 0 = (  // If any letter not guessed
+      0 s!           // Clear success flag
+   ))
+;
+
+// Main game loop
+:M `Welcome to Hangman!` /N
+   `Guess the 4-letter word` /N
+   /N
+   I                 // Initialize game
+   /U (             // Unlimited loop
+      H             // Draw hangman
+      /N
+      W             // Show word status
+      /N
+      `Tries left: ` t . /N
+      /N
+      `Enter a letter: `
+      /K c!         // Get input
+      C             // Check letter
+      n 0 = (       // If letter not found
+         t 1 - t!   // Decrease tries
+      )
+      F             // Check if complete
+      s /T = (      // If word complete
+         /N
+         `You won! The word was MINT` /N
+         0 /W       // Break loop
+      )
+      t 0 = (       // If out of tries
+         /N
+         `Game Over! The word was MINT` /N
+         0 /W       // Break loop
+      )
+   )
+;
+
+// Run game with M
+```
+
+1. Uses a fixed word "MINT" for demonstration (could be modified to use different words)
+2. Displays ASCII art for the hangman based on remaining tries
+3. Shows guessed letters and remaining tries
+4. Takes keyboard input for guesses
+5. Handles win/lose conditions
+
+Key features:
+
+1. Game state variables:
+   - w: Word array (stores ASCII values)
+   - g: Guessed letters array 
+   - t: Tries remaining
+   - c: Current input letter
+   - s: Success flag
+   - n: Letter found flag
+
+2. Main functions:
+   - I: Initializes the game
+   - H: Draws the hangman ASCII art
+   - W: Displays the word with guessed letters
+   - C: Checks if a guessed letter is in the word
+   - F: Checks if the word is complete
+   - M: Main game loop
+
+To play:
+
+1. Type `M` and press Enter to start the game
+2. Enter one letter at a time when prompted
+3. You have 6 tries to guess the word "MINT"
+4. The game ends when you either:
+   - Successfully guess the word
+   - Run out of tries
 
