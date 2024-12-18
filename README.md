@@ -1,54 +1,79 @@
 # TE-6-HANGMAN
 
+A comprehensive guide to playing and implementing the classic Hangman game.
+
+## Game Overview
+
+Hangman is a word-guessing game where one player (the "host") chooses a secret word, and other players attempt to guess it letter by letter. With each incorrect guess, part of a hangman figure is drawn, creating a countdown to game over.
+
 ## Playing Basic Hangman
 
-### Step 1
-Choose one person to be the "host." This is the person that invents the puzzle for the other person to solve. They will be tasked with choosing a word or phrase that "the players" will have to solve.
-The host should be able to spell confidently or the game will be impossible to win.
+### 1. Selecting the Host
 
-### step 2
-If you are the host, choose a secret word. The other players will need to guess your word letter by letter, so choose a word you think will be difficult to guess. Difficult words usually have uncommon letters, like "z," or "j," and only a few vowels.
-For longer games, you can also choose phrases.
+One person must be designated as the "host." This person will:
+- Choose the word or phrase for others to solve
+- Keep track of correct and incorrect guesses
+- Draw the hangman figure as needed
 
+*Note: The host should be confident in their spelling abilities, as incorrect spelling would make the game impossible to win.*
 
-### step 3
-Draw a blank line for each letter in the word. For example, if the executioner chooses the word "zipper," she/he would draw six blanks, one for each letter ( _ _ _ _ _ _ ). The host does not tell anyone else the secret word.
-Image titled Play Hangman Step 4
+### 2. Choosing the Secret Word
 
-### step 4
-Start guessing letters if you are the player. Once the word has been chosen and the players know how many letters in the secret word, begin guessing which letters are in the word by asking the host. For example, you might begin by asking, "is there an 'e' in your word?"
-Generally, start by guessing common letters like vowels, or "s," "t," and "n."
-Image titled Play Hangman Step 5
+The host selects a word or phrase that players will need to guess. For a challenging game:
+- Choose words with uncommon letters (like 'z', 'j', 'x')
+- Select words with fewer vowels
+- Consider using phrases for longer games
+- Keep the word secret from all players
 
-### step 5
-Fill the letter in the blanks if the players guess correctly. Whenever the players guess a letter that is in the secret word, the host fills it into the blank where it occurs. For example, if the word is "zipper" and the players guess "e," then the host will fill in the 5th blank with an "e:" (_ _ _ _ e _).
+### 3. Setting Up the Game Board
 
-If the players guess a letter that repeats, fill in both letters. If they guess "p," you would have to fill in both "p"s. ( _ _ p p e _ ).
+The host must:
+- Draw one blank line for each letter in the chosen word
+- Space the lines evenly for clarity
+- For phrases, include obvious spaces between words
 
-### step 6
-Draw part of the "hangman" when the players guess wrong. Whenever the players guess a letter that is not in the secret word they get a strike that brings them closer to losing. To show this, the host draws a simple stick figure of a man being hung, adding a new part to the drawing with every wrong answer. This is also where you can adjust the difficulty of the game -- the more marks you make, the more wrong guesses the player gets and the easier the game is. The classic order is:
+Example: For the word "zipper", draw: _ _ _ _ _ _
 
-First wrong answer: Draw and upside-down "L." This is the post the man hangs from.
+### 4. Gameplay: Letter Guessing
 
-Second: Draw a small circle for the "head" underneath the horizontal line of the "L."
+Players take turns guessing letters that might appear in the word. Strategy tips:
+- Begin with common letters (vowels, 's', 't', 'n')
+- Pay attention to letter patterns and word structure
+- Consider word length and possible categories
 
-Third: Draw a line down from the bottom of the head for the "body."
+### 5. Handling Correct Guesses
 
-Fourth: Draw one arm out from the middle of his body for the "arm."
+When players guess correctly:
+- Host fills in ALL instances of the guessed letter
+- Letters must be written clearly in their correct positions
+- Multiple occurrences of the same letter must all be revealed
 
-Fifth: Draw the other arm.
+Example progression for "zipper":
+- After 'e' guess: _ _ _ _ e _
+- After 'p' guess: _ _ p p e _
 
-Sixth: Draw one diagonal line from the bottom of the body for the first "leg."
+### 6. Drawing the Hangman
 
-Seventh: Draw the other leg.
+For incorrect guesses, the host draws the hangman in this sequence:
 
-Eighth: Connect the head to the post with a "noose." Once you draw the noose the players have lost the game.
+1. Gallows: Draw an upside-down "L"
+2. Head: Add a circle below the horizontal line
+3. Body: Draw a vertical line from the head
+4. First arm: Add a line from the middle of the body
+5. Second arm: Complete the pair of arms
+6. First leg: Draw a diagonal line from the body's base
+7. Second leg: Complete the pair of legs
+8. Noose: Connect head to gallows (game over)
 
-### step 7
-The players win when they guess the correct word. 
-  If the players get every letter of the word before the host finishes drawing then they win. 
-  At any point a player can try to guess the entire word instead of a single letter, but if they guess the wrong word then the host should treat it as if they guessed a wrong letter.[2]
+### 7. Winning and Losing Conditions
 
-## code
-- hang1.c
-- hang1.f
+The game ends when either:
+- Players win by:
+  - Correctly guessing all letters in the word
+  - Successfully guessing the complete word at once
+- Players lose when:
+  - The hangman drawing is completed
+  - Note: Guessing an incorrect complete word counts as one wrong guess
+
+## Implementation Files
+
